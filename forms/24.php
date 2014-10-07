@@ -1,5 +1,5 @@
 <?php
-
+//day end report
 function get_form_html($form_id, $date) {
     ob_start();
     ?>
@@ -159,10 +159,13 @@ function get_form_html($form_id, $date) {
                             <td>
                                 TAX(%)
                             </td>
-                            <td style="width: 20%;">
+                            <td style="width: 15%">
                                 COUNT
                             </td>
-                            <td style="width: 20%;">
+                            <td style="width: 15%;">
+                                AMOUNT
+                            </td>
+                            <td style="width: 15%;">
                                 TOTAL TAX
                             </td>
                     </tr>
@@ -170,6 +173,7 @@ function get_form_html($form_id, $date) {
                 <tbody style="text-align: center;">
                     <?php
                     $total_tax = 0;
+                    $total_amount = 0;
                     $total_count = 0;
                     $tax_category = new tax_category();
                     $tax_categories = $tax_category->getTaxCategories();
@@ -184,11 +188,13 @@ function get_form_html($form_id, $date) {
                                         <td><?php echo ++$i; ?></td>
                                         <td style="text-align: left; padding-left: 10px;"><?php echo $tax_category->tax_category_name; ?></td>
                                         <td><?php echo number_format($tax_vals['count'], 0, '.',''); ?></td>
+                                        <td><?php echo number_format($tax_vals['amount'], 0, '.',''); ?></td>
                                         <td><?php echo number_format($tax_vals['tax'], 2, '.',''); ?></td>
                                 </tr>                                
                             <?php
                             $total_tax += $tax_vals['tax'];
                             $total_count += $tax_vals['count'];
+                            $total_amount += $tax_vals['amount'];
                         }
                     }
                     ?>
@@ -196,6 +202,7 @@ function get_form_html($form_id, $date) {
                         <td></td>
                         <td style="text-align: right; padding-right: 10px;">TOTAL</td>
                         <td><?php echo number_format($total_count, 0, '.',''); ?></td>
+                        <td><?php echo number_format($total_amount, 2, '.',''); ?></td>
                         <td><?php echo number_format($total_tax, 2, '.',''); ?></td>
                     </tr>
                 </tbody>                               

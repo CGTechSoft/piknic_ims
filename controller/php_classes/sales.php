@@ -215,7 +215,7 @@ class sales {
     }
 
     function getOneDayTaxDetails($company_id, $date, $tax_category_id) {
-        $query = "SELECT count(*) as `count`, SUM(`tax`) as `tax` 
+        $query = "SELECT count(*) as `count`, SUM(`quantity` * `rate`) as `amount`, SUM(`tax`) as `tax` 
                     FROM `sales_items`
                     LEFT JOIN `item` on `sales_items`.`item_id` = `item`.`id`   
                     WHERE DATE(`sales_items`.`created_at`) = '$date' 
