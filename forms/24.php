@@ -188,13 +188,13 @@ function get_form_html($form_id, $date) {
                                         <td><?php echo ++$i; ?></td>
                                         <td style="text-align: left; padding-left: 10px;"><?php echo $tax_category->tax_category_name; ?></td>
                                         <td><?php echo number_format($tax_vals['count'], 0, '.',''); ?></td>
-                                        <td><?php echo number_format($tax_vals['amount'], 0, '.',''); ?></td>
+                                        <td><?php echo number_format(($tax_vals['amount']-$tax_vals['tax']), 0, '.',''); ?></td>
                                         <td><?php echo number_format($tax_vals['tax'], 2, '.',''); ?></td>
                                 </tr>                                
                             <?php
                             $total_tax += $tax_vals['tax'];
                             $total_count += $tax_vals['count'];
-                            $total_amount += $tax_vals['amount'];
+                            $total_amount += ($tax_vals['amount']-$tax_vals['tax']);
                         }
                     }
                     ?>
