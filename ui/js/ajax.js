@@ -116,7 +116,7 @@ function get_form_data(data, success_handler, failure_handler){
 function add_form_data(data, success_handler, failure_handler){
     ajax('../controller/api/add_form_data.php', 'POST', data, function(responce) {
         if (responce.status === 'success') {    
-            success_handler(responce.data.message, responce.data.id);
+            success_handler(responce.data.message, responce.data.id, responce.data);
         } else {
             failure_handler(responce.error);
         }

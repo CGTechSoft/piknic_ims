@@ -66,6 +66,9 @@ function get_form_html($form_id, $id, $page, $limit, $adjacents) {
                             ID
                         </th>
                         <th>
+                            BILL NUMBER
+                        </th>
+                        <th>
                             DATE &amp; TIME
                         </th>
                         <th>
@@ -103,6 +106,9 @@ function get_form_html($form_id, $id, $page, $limit, $adjacents) {
                             </td>
                             <td>
                                 <?php echo $sale->id; ?>
+                            </td>
+                            <td id="bill_number" >
+                                <?php echo $sale->bill_number; ?>
                             </td>
                             <?php 
                                 $date = date('d/m/Y',(strtotime($sale->sale_at)+(5.5*60*60) ));
@@ -276,16 +282,17 @@ function get_form_html($form_id, $id, $page, $limit, $adjacents) {
                 }
                 items[i++] = item;
              });
-             var c_name = selected_row.find('td#customer').attr('c_name');
-             var c_id = selected_row.find('td#customer').attr('c_id');
-             var sale_id = selected_row.attr('id');
-             var total = selected_row.find('td#total').html();
-             total = parseFloat(total).toFixed(2);
-             var total_tax = selected_row.find('td#tax').html();
+             var c_name         = selected_row.find('td#customer').attr('c_name');
+             var c_id           = selected_row.find('td#customer').attr('c_id');
+             var sale_id        = selected_row.attr('id');
+             var bill_number    = selected_row.find('td#bill_number').html();
+             var total          = selected_row.find('td#total').html();
+             total              = parseFloat(total).toFixed(2);
+             var total_tax      = selected_row.find('td#tax').html();
              var total_discount = selected_row.find('td#discount').html();
-             var date = selected_row.find('td#date').attr('date');
-             var time = selected_row.find('td#date').attr('time');
-             var net_total = selected_row.find('td#net_amount').html();
+             var date           = selected_row.find('td#date').attr('date');
+             var time           = selected_row.find('td#date').attr('time');
+             var net_total      = selected_row.find('td#net_amount').html();
              get_form(2,  ///sales return invoice
                 function (html, tools){
                     $('div#form-body').html(html);
@@ -323,6 +330,7 @@ function get_form_html($form_id, $id, $page, $limit, $adjacents) {
                     form.find('span#total_paid').html(total);
                     form.find('span#balance').html('0.00');
                     form.attr('sale_id', sale_id);
+                    form.attr('bill_number', bill_number);
                     form.attr('customer_name', c_name);
                     form.attr('customer_id', c_id);
                 },
@@ -367,21 +375,22 @@ function get_form_html($form_id, $id, $page, $limit, $adjacents) {
              if(c_id == 0){
                  c_name = 'Not Regd.';
              }
-             var sale_id = selected_row.attr('id');
-             var total = selected_row.find('td#total').html();
-             total = parseFloat(total);
-             total = total.toFixed(2);
-             var total_tax = selected_row.find('td#tax').html();
-             total_tax = parseFloat(total_tax);
-             total_tax = total_tax.toFixed(2);
+             var sale_id        = selected_row.attr('id');
+             var bill_number    = selected_row.find('td#bill_number').html();
+             var total          = selected_row.find('td#total').html();
+             total              = parseFloat(total);
+             total              = total.toFixed(2);
+             var total_tax      = selected_row.find('td#tax').html();
+             total_tax          = parseFloat(total_tax);
+             total_tax          = total_tax.toFixed(2);
              var total_discount = selected_row.find('td#discount').html();
-             total_discount = parseFloat(total_discount);
-             total_discount = total_discount.toFixed(2);
-             var net_total = selected_row.find('td#net_amount').html();
-             net_total = parseFloat(net_total);
-             net_total = net_total.toFixed(2);
-             var date = selected_row.find('td#date').attr('date');
-             var time = selected_row.find('td#date').attr('time');
+             total_discount     = parseFloat(total_discount);
+             total_discount     = total_discount.toFixed(2);
+             var net_total      = selected_row.find('td#net_amount').html();
+             net_total          = parseFloat(net_total);
+             net_total          = net_total.toFixed(2);
+             var date           = selected_row.find('td#date').attr('date');
+             var time           = selected_row.find('td#date').attr('time');
              var data = {
                   customer_id: c_id,
                   total: total,
@@ -392,9 +401,9 @@ function get_form_html($form_id, $id, $page, $limit, $adjacents) {
                   date: date,
                   time: time
              }
-             print_bill(data, c_name, sale_id);
+             print_bill(data, c_name, sale_id, bill_number);
         }
-        function print_bill(data, customer_name, sale_id) {
+        function print_bill(data, customer_name, sale_id, bill_number) {
                 <?php
                 $shop = new company();
                 $shop->id = $user->company_id;
@@ -414,7 +423,8 @@ function get_form_html($form_id, $id, $page, $limit, $adjacents) {
                         +"<tr><td>Time</td><td>:</td><td style=\"text-align:right;\">" + data.time + "</td></tr></table>";
                 
                 html = html + "<table style=\"font-size: 12px;\">"
-                        +"<tr><td>Bill No.</td><td>:</td><td>" + sale_id + "</td></tr>"
+                        +"<tr><td>Bill No.</td><td>:</td><td>" + bill_number + "</td></tr>"
+                        +"<tr><td>Sale ID</td><td>:</td><td>" + sale_id + "</td></tr>"
                         +"<tr><td>Cust. ID</td><td>:</td><td>" + data.customer_id + "</td></tr>"
                         +"<tr><td>Cust. Name</td><td>:</td><td>" + customer_name + "</td></tr></table></div>";
                 

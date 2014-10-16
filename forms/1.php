@@ -438,10 +438,10 @@ function get_form_html($form_id, $id) {
                         discount:total_discount,
                         items: items
                     }
-                        add_form_data(data, function(message, sale_id) {
+                        add_form_data(data, function(message, sale_id, sale_details) {
                             //$('form.action_form').get(0).reset();
                             //alert(message);
-                            print_bill(data, customer_name, sale_id);
+                            print_bill(data, customer_name, sale_id, sale_details.bill_number);
                             get_form(1,
                                 function(html) {
                                     $('div#form-body').html(html);
@@ -457,7 +457,7 @@ function get_form_html($form_id, $id) {
                     alert("Invalid Operation " + form_id + ' - ' + operation);
                 }
             });
-            function print_bill(data, customer_name, sale_id) {
+            function print_bill(data, customer_name, sale_id, bill_number) {
                 <?php
                 $shop = new company();
                 $shop->id = $user->company_id;
@@ -494,7 +494,8 @@ function get_form_html($form_id, $id) {
                         +"<tr><td>Time</td><td>:</td><td style=\"text-align:right;\">" + time + "</td></tr></table>";
                 
                 html = html + "<table style=\"font-size: 12px;\">"
-                        +"<tr><td>Bill No.</td><td>:</td><td>" + sale_id + "</td></tr>"
+                        +"<tr><td>Bill No.</td><td>:</td><td>" + bill_number + "</td></tr>"
+                        +"<tr><td>Sale ID</td><td>:</td><td>" + sale_id + "</td></tr>"
                         +"<tr><td>Cust. ID</td><td>:</td><td>" + data.customer_id + "</td></tr>"
                         +"<tr><td>Cust. Name</td><td>:</td><td>" + customer_name + "</td></tr></table></div>";
                 

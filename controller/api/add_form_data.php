@@ -47,9 +47,11 @@ if (isset($_SESSION['user_id']) and !empty($_SESSION['user_id'])
                     array_push($sales_items, $sales_item);
                 }
                 $sale->setSalesItems($sales_items);
-                $inserted_id = $sale->addSales();
+                $sale_details = $sale->addSales();
+                $inserted_id = $sale_details['id'];
+                $bill_number = $sale_details['bill_number'];
                 $message = "Sale completed successfuly";
-                $responce = array('status' => 'success', 'error' => '', 'data' => array("message" => $message, "id"=>$inserted_id));
+                $responce = array('status' => 'success', 'error' => '', 'data' => array("message" => $message, "id"=>$inserted_id, "bill_number"=>$bill_number));
             } else {
                 ob_start();
                 $a = ob_get_clean();

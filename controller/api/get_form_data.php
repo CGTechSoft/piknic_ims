@@ -59,7 +59,7 @@ if (isset($_SESSION['user_id']) and !empty($_SESSION['user_id'])
                         }
                         $date = date('d/m/Y',(strtotime($sale->sale_at)+(5.5*60*60) ));
                         $time = date('h:m A',(strtotime($sale->sale_at)+(5.5*60*60) ));
-                        $sales_array = array("id"=>$sale->id,"date"=>$date,"time"=>$time,"customer"=>$customer_name,"c_name"=>$customer->customer_name,"c_id"=>$customer->id, "amount"=>  number_format($sale->amount, 2, '.',''), "tax"=>$sale->tax_amount, "discount"=>$sale->discount, "items"=>$items);
+                        $sales_array = array("id"=>$sale->id,"bill_number"=>$sale->bill_number,"date"=>$date,"time"=>$time,"customer"=>$customer_name,"c_name"=>$customer->customer_name,"c_id"=>$customer->id, "amount"=>  number_format($sale->amount, 2, '.',''), "tax"=>$sale->tax_amount, "discount"=>$sale->discount, "items"=>$items);
                         $responce = array('status' => 'success', 'error' => '', 'data' => array("message" => $message, "data"=>$sales_array));
                     } else {
                         $responce = array('status' => 'failed', 'error' => 'The Sale is of another shop', 'data' => array());

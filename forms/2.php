@@ -424,6 +424,7 @@ function get_form_html($form_id, $id) {
                     form.find('span#total_paid').html(sale.amount);
                     form.find('span#balance').html('0.00');
                     form.attr('sale_id', sale.id);
+                    form.attr('bill_number', sale.bill_number);
                     form.attr('customer_name', sale.c_name);
                     form.attr('customer_id', sale.c_id);   
                     form.find('input[type="button"]').prop('disabled', null);
@@ -504,6 +505,7 @@ function get_form_html($form_id, $id) {
                 balance = parseFloat(balance);
                 balance = balance.toFixed(2);
                 var sale_id = $(this).attr('sale_id');
+                var bill_number = $(this).attr('bill_number');
                 var customer_name = $(this).attr('customer_name');
                 var customer_id = $(this).attr('customer_id');
                 var date = $(this).find('input#date_and_time').attr('date');
@@ -525,7 +527,7 @@ function get_form_html($form_id, $id) {
                         update_form_data(data, function(message, sale_id) {
                             //$('form.action_form').get(0).reset();
                             //alert(message);
-                            print_bill(data, customer_name, customer_id, sale_id, total_paid, balance, date, time);
+                            print_bill(data, customer_name, customer_id, sale_id, total_paid, balance, date, time, bill_number);
                             get_form(2,
                                 function(html) {
                                     $('div#form-body').html(html);
@@ -541,7 +543,7 @@ function get_form_html($form_id, $id) {
                     alert("Invalid Operation " + form_id + ' - ' + operation);
                 }
             });
-            function print_bill(data, customer_name, customer_id, sale_id, total_paid, balance, date, time) {
+            function print_bill(data, customer_name, customer_id, sale_id, total_paid, balance, date, time, bill_number) {
                 <?php
                 $shop = new company();
                 $shop->id = $user->company_id;
@@ -560,7 +562,8 @@ function get_form_html($form_id, $id) {
                         +"<tr><td>Time</td><td>:</td><td style=\"text-align:right;\">" + time + "</td></tr></table>";
                 
                 html = html + "<table style=\"font-size: 12px;\">"
-                        +"<tr><td>Bill No.</td><td>:</td><td>" + sale_id + "</td></tr>"
+                        +"<tr><td>Bill No.</td><td>:</td><td>" + bill_number + "</td></tr>"
+                        +"<tr><td>Sale ID</td><td>:</td><td>" + sale_id + "</td></tr>"
                         +"<tr><td>Cust. ID</td><td>:</td><td>" + customer_id + "</td></tr>"
                         +"<tr><td>Cust. Name</td><td>:</td><td>" + customer_name + "</td></tr></table></div>";
                 

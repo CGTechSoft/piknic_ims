@@ -8,6 +8,7 @@
 class sales {
 
     public $id;
+    public $bill_number;
     public $customer_id;
     public $amount;
     public $sale_at;
@@ -54,6 +55,8 @@ class sales {
         if ($sale == null) {
             $sale = $this;
         }
+        $bill_number = $this->db_handler->get_model_max_value($this, "bill_number", "company_id = ".$this->company_id);
+        $this->bill_number = $bill_number + 1;
         $sale_id = $this->db_handler->add_model($sale);
         if (is_array($this->sales_items) and count($this->sales_items) != 0) {
             foreach ($this->sales_items as $sales_item) {
@@ -78,7 +81,8 @@ class sales {
         $customer->updateCustomer();
 
         Log::i($this->tag, $description);
-        return $sale_id;
+        $sale_array = array("id"=>$sale_id, "bill_number"=>  $this->bill_number);
+        return $sale_array;
     }
 
     function updateSale($sale = null) {
