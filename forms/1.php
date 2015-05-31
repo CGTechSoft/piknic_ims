@@ -72,7 +72,7 @@ function get_form_html($form_id, $id) {
                     <td colspan="2">
                         <style>
                             div#purchace_items td{
-                                border: 1px solid #21ACD7;
+                                border: 1px solid #FFD00F;
                             }
                             div#purchace_items tbody td{
                                 padding: 5px 0 5px 5px;
@@ -86,9 +86,9 @@ function get_form_html($form_id, $id) {
                                 background-color: transparent;
                             }
                         </style>
-                        <div id="purchace_items" style="width: 100%; padding: 10px 0; color: #21ACD7;">           
+                        <div id="purchace_items" style="width: 100%; padding: 10px 0; color: #FFD00F;">           
                             <table id="items_table" style="border-collapse: collapse; width: 100%; 
-                                   background-color: #fff; border-radius: 10px;  color: #21ACD7;">
+                                   background-color: #fff; border-radius: 10px;  color: #FFD00F;">
                                 <thead style="text-align: center;">
                                     <tr>
                                         <td>
@@ -173,7 +173,7 @@ function get_form_html($form_id, $id) {
                 <tr>
                     <td></td>
                     <td>
-                        <div style="background-color: #21ACD7; color: #fff; text-align: center; padding-right: 20px;">
+                        <div style="background-color: #FFD00F; color: #fff; text-align: center; padding-right: 20px;">
                             <span style="margin-right: 20px;">TOTAL </span>
                             <span id="total">0</span>
                         </div> 
@@ -185,7 +185,7 @@ function get_form_html($form_id, $id) {
                     <td>
                         <div style="padding: 0px 12px;">
                             <div style="width: 100%; margin-left: -12px; padding: 12px; 
-                                 background-color: #0d92bb; border-radius: 5px; float: left;">
+                                 background-color: #92BB0D; border-radius: 5px; float: left;">
 
                                 <div style="width: 33.33%; float: right;  ">
                                     <input style="width: 100%;" type="submit" value="ADD" />

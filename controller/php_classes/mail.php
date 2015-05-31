@@ -19,7 +19,7 @@ class mail {
             <head>
               <title style="font-size:28px;">'.$this->subject.'</title>
             </head>
-            <body style="background-color:#21acd7; color:#fff;">
+            <body style="background-color:#FFD00F; color:#fff;">
               <p>'.$this->subject.'</p>
               <table>
                 <tr>

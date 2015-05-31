@@ -13,7 +13,7 @@ and open the template in the editor.
 }
 .pagination .current{
     padding: 4px 10px;
-    color: #21ACD7;
+    color: #FFD00F;
     margin: 1px 0px 9px 6px;
     cursor: pointer;
     display: inline;
@@ -27,5 +27,5 @@ and open the template in the editor.
     cursor: pointer;
     display: inline;
     text-transform: capitalize;
-    background: #21ACD7;
+    background: #FFD00F;
 }

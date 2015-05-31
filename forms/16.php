@@ -3,14 +3,14 @@
 function get_form_html($form_id, $id) {
     ob_start();
     ?>
-    <div id="head_div" style="padding: 5px 0; background-color: #ECECEC;  color: #21ACD7;
+    <div id="head_div" style="padding: 5px 0; background-color: #ECECEC;  color: #FFD00F;
          border-radius: 5px;margin-left: auto; text-align: center; ">
         UN-STOCKED PURCHACES
     </div>
     <div style="margin-top: 10px; background-color:transparent;padding-bottom: 30px;">
         <style>
             div#purchace_items td{
-                border: 1px solid #21ACD7;
+                border: 1px solid #FFD00F;
             }
             div#purchace_items tbody td{
                 padding: 5px 0 5px 5px;
@@ -24,9 +24,9 @@ function get_form_html($form_id, $id) {
                 background-color: transparent;
             }
         </style>
-        <div id="purchace_items" style="width: 100%; padding: 10px 0; color: #21ACD7;">           
+        <div id="purchace_items" style="width: 100%; padding: 10px 0; color: #FFD00F;">           
             <table id="items_table" style="border-collapse: collapse; width: 100%; 
-                   background-color: #fff; border-radius: 10px;  color: #21ACD7;">
+                   background-color: #fff; border-radius: 10px;  color: #FFD00F;">
                 <thead style="text-align: center;">
                     <tr>
                         <td>
@@ -110,7 +110,7 @@ function get_form_html($form_id, $id) {
                         </tr>
                         <tr id="purchace_item" style="display: none;">
                             <td colspan="8" style="padding:0 0 20px 0;">
-                                <table style="border-collapse: collapse; background-color: #c0effd; width: 80%; color: #21ACD7; float: right;">
+                                <table style="border-collapse: collapse; background-color: #c0effd; width: 80%; color: #FFD00F; float: right;">
                                     <tr>
                                         <td>
                                             ITEM

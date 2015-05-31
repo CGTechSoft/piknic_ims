@@ -3,7 +3,7 @@
 function get_form_html($form_id, $date) {
     ob_start();
     ?>
-    <div id="head_div" style="padding: 5px 0; background-color: #ECECEC;  color: #21ACD7;
+    <div id="head_div" style="padding: 5px 0; background-color: #ECECEC;  color: #FFD00F;
          border-radius: 5px;margin-left: auto; text-align: center; ">
         MONTHLY REPORT OF 
         <input id="year_field" value="<?php 
@@ -39,7 +39,7 @@ function get_form_html($form_id, $date) {
     <div id="content_table" style="margin-top: 10px; background-color:transparent;padding-bottom: 30px;">
         <style>
             div#purchace_items td{
-                border: 1px solid #21ACD7;
+                border: 1px solid #FFD00F;
             }
             div#purchace_items tbody td{
                 padding: 5px 0 5px 5px;
@@ -53,9 +53,9 @@ function get_form_html($form_id, $date) {
                 background-color: transparent;
             }
         </style>
-        <div id="purchace_items" style="width: 100%; padding: 10px 0; color: #21ACD7;">           
+        <div id="purchace_items" style="width: 100%; padding: 10px 0; color: #FFD00F;">           
             <table id="table" style="border-collapse: collapse; width: 100%; 
-                   background-color: #fff; border-radius: 10px;  color: #21ACD7;">
+                   background-color: #fff; border-radius: 10px;  color: #FFD00F;">
                 <thead style="text-align: center;">
                     <tr>
                         <td style="width: 5%;">
@@ -230,7 +230,7 @@ function get_form_html($form_id, $date) {
             </table>
             <?php /* ?>
             <table id="sales_statistics_table" style="border-collapse: collapse; width: 100%; 
-                   background-color: #fff; border-radius: 10px;  color: #21ACD7; margin-top: 20px;">
+                   background-color: #fff; border-radius: 10px;  color: #FFD00F; margin-top: 20px;">
                 <thead style="text-align: center;">
                     <tr>
                             <td style="width: 5%;">
@@ -294,7 +294,7 @@ function get_form_html($form_id, $date) {
             var year = $('input#year_field').val();
             var month = $('select#month_field option:selected').html();
             $('div#print_container_header')
-                    .html('<font style="color:#21ACD7; font-size:20px; ">MONTHLY REPORT OF '+year+' '+month+'</font>');
+                    .html('<font style="color:#FFD00F; font-size:20px; ">MONTHLY REPORT OF '+year+' '+month+'</font>');
             var html = $('div#content_table').html();
             $('div#print_container_body').html(html);  
             print();

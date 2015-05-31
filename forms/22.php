@@ -18,7 +18,7 @@ function get_form_html($form_id, $id) {
             width: 100%;
         }
     </style>
-    <div id="head_div" style="padding: 5px 0; background-color: #ECECEC;  color: #21ACD7;
+    <div id="head_div" style="padding: 5px 0; background-color: #ECECEC;  color: #FFD00F;
          border-radius: 5px;margin-left: auto;display: none; text-align: center; ">
     </div>
     <div style="margin-top: 10px; background-color:transparent;padding-bottom: 30px;">
@@ -70,7 +70,7 @@ function get_form_html($form_id, $id) {
                     <td>
                         <div style="padding: 0px 12px;">
                             <div style="width: 100%; margin-left: -12px; padding: 12px; 
-                                 background-color: #0d92bb; border-radius: 5px; float: left;">
+                                 background-color: #92BB0D; border-radius: 5px; float: left;">
                                 <div style="width: 50%; float: right;  ">
                                      <input style="width: 100%;" type="submit" value="ADD" />
                                 </div>

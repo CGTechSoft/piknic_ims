@@ -56,7 +56,7 @@ spl_autoload_register(function($class_name) {
         <div id="content">
             <div id="content-header">
                 <div id="user_info" style="float:right;">
-                    <font id="user_info_name" style="color: #21acd7;"></font>
+                    <font id="user_info_name" style="color: #FFD00F;"></font>
                     <a id="logout" style="cursor: pointer;"> Logout </a>
                 </div>                
                 <font class="centre-text" id="brand-name">Pik-Nik Royalee</font>

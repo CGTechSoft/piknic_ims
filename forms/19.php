@@ -15,14 +15,14 @@ function get_form_html($form_id, $id, $page, $limit, $adjacents) {
         $head_message = "PURCHACE $start TO ".($start + $limit);
     }
 ?>
-    <div id="head_div" style="padding: 10px 0; background-color: #ECECEC;  color: #21ACD7;
+    <div id="head_div" style="padding: 10px 0; background-color: #ECECEC;  color: #FFD00F;
          border-radius: 5px;margin-left: auto; text-align: center;overflow-x: auto; ">
          <?php echo $head_message; ?>
     </div>
     <div style="margin-top: 10px; background-color:transparent;padding-bottom: 30px;">
         <style>
             div#purchace_items td, div#purchace_items th{
-                border: 1px solid #21ACD7;
+                border: 1px solid #FFD00F;
             }
             div#purchace_items tbody td{
                 padding: 5px 0 5px 5px;
@@ -54,9 +54,9 @@ function get_form_html($form_id, $id, $page, $limit, $adjacents) {
              <?php echo pagination($limit, $adjacents, $count, $page); ?>
         </div>
         
-        <div id="purchace_items" style="width: 100%; padding: 10px 0; color: #21ACD7;">           
+        <div id="purchace_items" style="width: 100%; padding: 10px 0; color: #FFD00F;">           
             <table id="items_table" style="border-collapse: collapse; width: 100%; 
-                   background-color: #fff; border-radius: 10px;  color: #21ACD7;">
+                   background-color: #fff; border-radius: 10px;  color: #FFD00F;">
                 <thead style="text-align: center;">
                     <tr>
                         <th>
@@ -147,7 +147,7 @@ function get_form_html($form_id, $id, $page, $limit, $adjacents) {
                             </tr>
                             <tr id="purchace_item" style="display: none;">
                                 <td colspan="8" style="padding:0 0 20px 0;">
-                                    <table id="purchace_items" style="border-collapse: collapse; background-color: #c0effd; width: 80%; color: #21ACD7; float: right;">
+                                    <table id="purchace_items" style="border-collapse: collapse; background-color: #c0effd; width: 80%; color: #FFD00F; float: right;">
                                         <thead>
                                             <tr>
                                                 <th>

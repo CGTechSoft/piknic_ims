@@ -3,7 +3,7 @@
 function get_form_html($form_id, $date) {
     ob_start();
     ?>
-    <div id="head_div" style="padding: 5px 0; background-color: #ECECEC;  color: #21ACD7;
+    <div id="head_div" style="padding: 5px 0; background-color: #ECECEC;  color: #FFD00F;
          border-radius: 5px;margin-left: auto; text-align: center; ">
         DAY END REPORT OF 
         <input id="date_field" value="<?php 
@@ -16,7 +16,7 @@ function get_form_html($form_id, $date) {
     <div id="sales_items_table" style="margin-top: 10px; background-color:transparent;padding-bottom: 30px;">
         <style>
             div#purchace_items td{
-                border: 1px solid #21ACD7;
+                border: 1px solid #FFD00F;
             }
             div#purchace_items tbody td{
                 padding: 5px 0 5px 5px;
@@ -30,9 +30,9 @@ function get_form_html($form_id, $date) {
                 background-color: transparent;
             }
         </style>
-        <div id="purchace_items" style="width: 100%; padding: 10px 0; color: #21ACD7;">           
+        <div id="purchace_items" style="width: 100%; padding: 10px 0; color: #FFD00F;">           
             <table id="sales_items_table" style="border-collapse: collapse; width: 100%; 
-                   background-color: #fff; border-radius: 10px;  color: #21ACD7;">
+                   background-color: #fff; border-radius: 10px;  color: #FFD00F;">
                 <thead style="text-align: center;">
                     <tr>
                         <td style="width: 5%;">
@@ -101,7 +101,7 @@ function get_form_html($form_id, $date) {
                   </tbody>                               
             </table>
             <table id="sales_statistics_table" style="border-collapse: collapse; width: 100%; 
-                   background-color: #fff; border-radius: 10px;  color: #21ACD7; margin-top: 20px;">
+                   background-color: #fff; border-radius: 10px;  color: #FFD00F; margin-top: 20px;">
                 <thead style="text-align: center;">
                     <tr>
                             <td style="width: 5%;">
@@ -158,7 +158,7 @@ function get_form_html($form_id, $date) {
         function on_print_clicked() {
             var date = $('input#date_field').val();
             $('div#print_container_header')
-                    .html('<font style="color:#21ACD7; font-size:20px; ">DAY END REPORT OF '+date+'</font>');
+                    .html('<font style="color:#FFD00F; font-size:20px; ">DAY END REPORT OF '+date+'</font>');
             var html = $('div#sales_items_table').html();
             $('div#print_container_body').html(html);  
             print();
