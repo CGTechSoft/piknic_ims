@@ -204,9 +204,10 @@ function get_form_html($form_id, $id) {
         }
         function calculate_total(field) {
             var $parent = $(field).closest('tr');
-            var $quantity = parseInt($parent.find('input#quantity').val());
-            var $rate = parseInt($parent.find('input#rate').val());
+            var $quantity = parseFloat($parent.find('input#quantity').val());
+            var $rate = parseFloat($parent.find('input#rate').val());
             var $total = $quantity * $rate;
+            $total = parseFloat($total).toFixed(2);
             if ($.isNumeric($total)) {
                 $parent.find('input#total').val($total);
             } else {
@@ -222,9 +223,10 @@ function get_form_html($form_id, $id) {
                 var row_status = $(this).attr('status');
                 var item_total = item_total_input.val();
                 if ($.isNumeric(item_total) && row_status == 'active') {
-                    total = parseInt(total) + parseInt(item_total);
+                    total = parseFloat(total) + parseFloat(item_total);
                 }
-            });
+            });            
+            total = parseFloat(total).toFixed(2);
             $('span#total').html(total);
         }
         function delete_this_row(delete_btn) {
@@ -250,7 +252,7 @@ function get_form_html($form_id, $id) {
         }
         function add_purchace_item() {
             var row = '<tr  status="active" slno=""><td style="text-align: center;"></td><td>'
-                    + '<input type="text" onchange="update_item_details(this)" onfocus="$(this).css(\'border\', \'0px\')" autocomplete="off" list="items" id="item" required />'
+                    + '<input type="text" onchange="update_item_details(this)" oninput="update_item_details(this)" onfocus="$(this).css(\'border\', \'0px\')" autocomplete="off" list="items" id="item" required />'
                     + '</td><td><input type="number" min="0" required onchange="calculate_total(this)" onkeyup="calculate_total(this)" step="0.001" id="quantity"/>'
                     + '</td><td><input type="number" min="0" required onchange="calculate_total(this)" onkeyup="calculate_total(this)" step="0.01" id="rate"/>'
                     + '</td><td><input type="text" min="0" required  id="total" disabled/></td><td style="width: 20px; text-align: center; padding-right: 5px;">'

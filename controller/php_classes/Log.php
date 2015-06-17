@@ -44,6 +44,6 @@ class Log {
         Log::close_file();
     }
     public static function get_time_stamp() {
-        return date(Log::$date_format);
+        return date(Log::$date_format, (time()+(5.5*60*60)));
     }
 }

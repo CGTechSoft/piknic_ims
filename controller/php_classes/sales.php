@@ -15,6 +15,9 @@ class sales {
     public $tax_amount;
     public $company_id;
     public $last_edited;
+    public $discount;
+
+
     private $sales_items = array();
     private $db_handler;
     private $tag = 'SALES CONTROLLER';
@@ -35,6 +38,7 @@ class sales {
                 . 'sale_at : ' . $this->sale_at . ' - '
                 . 'sale_items : ' . $sales_items . ' - '
                 . 'net_amount : ' . $this->net_amount . ' - '
+                . 'discount : ' . $this->discount . ' - '
                 . 'company_id : ' . $this->company_id;
     }
 

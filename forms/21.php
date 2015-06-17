@@ -66,7 +66,7 @@ function get_form_html($form_id, $id, $page, $limit, $adjacents) {
                 </thead>
                 <tbody style="padding-left: 3px; text-align: center; ">
                     <?php
-                    $customers = $customer->getCustomers($user->company_id, $start, $limit);
+                    $customers = $customer->getCustomersPaged($user->company_id, $start, $limit);
                     $i = $start;
                     if($customers==NULL || sizeof($customers)==0){
                         echo '<tr><td colspan="8"> No Customer Found </td></tr>';

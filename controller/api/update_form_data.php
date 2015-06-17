@@ -17,10 +17,11 @@ if (isset($_SESSION['user_id']) and !empty($_SESSION['user_id'])) {
         $form_id = $_POST['form_id'];
         $tag = "UPDATE_FORM_DATA";
         if ($form_id == 2) {   ///sales return
-            if (isset($_POST['total']) and !empty($_POST['total']) 
+            if (isset($_POST['total']) //and !empty($_POST['total']) 
                     and isset($_POST['sale_id']) and !empty($_POST['sale_id']) 
-                    and isset($_POST['net_amount']) and !empty($_POST['net_amount']) 
-                    and isset($_POST['tax_amount']) and !empty($_POST['tax_amount']) 
+                    and isset($_POST['net_amount']) //and !empty($_POST['net_amount']) 
+                    and isset($_POST['tax_amount']) //and !empty($_POST['tax_amount']) 
+                    and isset($_POST['discount'])// and !empty($_POST['discount']) 
                     and isset($_POST['items']) and !empty($_POST['items'])) {
                 $sale = new sales();
                 $sale->id = $_POST['sale_id'];
@@ -29,6 +30,7 @@ if (isset($_SESSION['user_id']) and !empty($_SESSION['user_id'])) {
                 $sale->amount = $_POST['total'];
                 $sale->net_amount = $_POST['net_amount'];
                 $sale->tax_amount = $_POST['tax_amount'];
+                $sale->discount = $_POST['discount'];
                 $sales_items_prev = $sale->getSalesItems();
                 $sales_items_new = array();
                 if(!($_POST['items'] == 'no_items')){
@@ -38,6 +40,7 @@ if (isset($_SESSION['user_id']) and !empty($_SESSION['user_id'])) {
                         $sales_item->quantity = $sales_array_item['quantity'];
                         $sales_item->rate = $sales_array_item['rate'];
                         $sales_item->tax = $sales_array_item['tax'];
+                        $sales_item->discount = $sales_array_item['discount'];
                         array_push($sales_items_new, $sales_item);
                     }
                 }
@@ -252,9 +255,11 @@ if (isset($_SESSION['user_id']) and !empty($_SESSION['user_id'])) {
             if (isset($_POST['item_id']) and !empty($_POST['item_id']) 
                     and isset($_POST['item_name']) and !empty($_POST['item_name']) 
                     and isset($_POST['item_code']) and !empty($_POST['item_code']) 
-                    and isset($_POST['mrp']) and !empty($_POST['mrp']) 
+                    and isset($_POST['mrp']) // and !empty($_POST['mrp']) 
                     and isset($_POST['tax_category_id']) and !empty($_POST['tax_category_id']) 
-                    and isset($_POST['purchace_rate']) and !empty($_POST['purchace_rate'])) {
+                    and isset($_POST['purchace_rate']) // and !empty($_POST['purchace_rate'])
+                    and isset($_POST['discount_percent']) // and !empty($_POST['discount_percent'])
+                    ) {
                 $item = new item();
                 $item->id = $_POST['item_id'];
                 $item->getItem();
@@ -263,6 +268,7 @@ if (isset($_SESSION['user_id']) and !empty($_SESSION['user_id'])) {
                 $item->mrp = $_POST['mrp'];
                 $item->purchace_rate = $_POST['purchace_rate'];
                 $item->tax_category_id = $_POST['tax_category_id'];
+                $item->discount_percent = $_POST['discount_percent'];
                 if($item->updateItem()){
                     $message = "Item Updated Successfuly";
                     $responce = array('status' => 'success', 'error' => '', 'data' => array("message" => $message, "id"=>$item->id)); 

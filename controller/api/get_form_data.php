@@ -42,13 +42,13 @@ if (isset($_SESSION['user_id']) and !empty($_SESSION['user_id'])) {
                                 $tax_category->id = $item->tax_category_id;
                                 $tax_category->getTaxCategory();
                                 
-                                $s_item_array=array("item_id"=>$item->id ,"item_name"=>$item->item_name.' - '.$item->item_code , "quantity"=>  number_format($s_item->quantity, 3, '.',''), "rate"=>  number_format($s_item->rate, 2, '.',''), "tax"=>$s_item->tax, "tax_rate"=>$tax_category->tax_percentage, "total"=>  number_format(($s_item->rate*$s_item->quantity)), 2, '.','');
+                                $s_item_array=array("item_id"=>$item->id ,"item_name"=>$item->item_name.' - '.$item->item_code , "quantity"=>  number_format($s_item->quantity, 3, '.',''), "rate"=>  number_format($s_item->rate, 2, '.',''), "tax"=>$s_item->tax, "tax_rate"=>$tax_category->tax_percentage, "discount"=>$s_item->discount, "discount_percent"=>$item->discount_percent, "total"=>  number_format(($s_item->rate*$s_item->quantity)), 2, '.','');
                                 array_push($items, $s_item_array);
                             }
                         }
                         $date = date('d/m/Y',(strtotime($sale->sale_at)+(5.5*60*60) ));
                         $time = date('h:m A',(strtotime($sale->sale_at)+(5.5*60*60) ));
-                        $sales_array = array("id"=>$sale->id,"date"=>$date,"time"=>$time,"customer"=>$customer_name,"c_name"=>$customer->customer_name,"c_id"=>$customer->id, "amount"=>  number_format($sale->amount, 2, '.',''), "tax"=>$sale->tax_amount, "items"=>$items);
+                        $sales_array = array("id"=>$sale->id,"date"=>$date,"time"=>$time,"customer"=>$customer_name,"c_name"=>$customer->customer_name,"c_id"=>$customer->id, "amount"=>  number_format($sale->amount, 2, '.',''), "tax"=>$sale->tax_amount, "discount"=>$sale->discount, "items"=>$items);
                         $responce = array('status' => 'success', 'error' => '', 'data' => array("message" => $message, "data"=>$sales_array));
                     } else {
                         $responce = array('status' => 'failed', 'error' => 'The Sale is of another shop', 'data' => array());
@@ -82,11 +82,11 @@ if (isset($_SESSION['user_id']) and !empty($_SESSION['user_id'])) {
                                 $item = new item();
                                 $item->id = $p_item->item_id;
                                 $item->getItem();
-                                $p_item_array=array("item_name"=>$item->item_name.' - '.$item->item_code.' ( ID : '.$item->id.' )' , "quantity"=>$p_item->quantity, "rate"=>$p_item->rate);
+                                $p_item_array=array("item_name"=>$item->item_name.' - '.$item->item_code.' ( ID : '.$item->id.' )' , "quantity"=> number_format($p_item->quantity, 3, '.', ''), "rate"=>number_format($p_item->rate, 2, '.', ''));
                                 array_push($items, $p_item_array);
                             }
                         }
-                        $purchace_array = array("id"=>$purchace->id,"wendor"=>$vendor_name, "stocked"=>$purchace->stocked, "amount"=>$purchace->amount, "bill_number"=>$purchace->bill_number, "items"=>$items);
+                        $purchace_array = array("id"=>$purchace->id,"wendor"=>$vendor_name, "stocked"=>$purchace->stocked, "amount"=>  number_format($purchace->amount, 2, '.', ''), "bill_number"=>$purchace->bill_number, "items"=>$items);
                         $responce = array('status' => 'success', 'error' => '', 'data' => array("message" => $message, "data"=>$purchace_array));
                     } else {
                         $responce = array('status' => 'failed', 'error' => 'The Purchace is of another shop', 'data' => array());

@@ -22,6 +22,8 @@ class sales_items {
     public $last_edited;
     public $company_id;
     public $total;
+    public $discount;
+    
     private $db_handler;
     private $tag = 'SALES ITEMS CONTROLLER';
 
@@ -35,6 +37,7 @@ class sales_items {
                 . 'item_id : ' . $this->item_id . ' - '
                 . 'rate : ' . $this->rate . ' - '
                 . 'quantity : ' . $this->quantity . ' - '
+                . 'discount : ' . $this->discount . ' - '
                 . 'tax : ' . $this->tax;
     }
 

@@ -12,6 +12,7 @@ class item {
     public $mrp;
     public $purchace_rate;
     public $tax_category_id;
+    public $discount_percent;
     
     private $db_handler;
     private $tag = 'ITEM CONTROLLER';
@@ -26,6 +27,7 @@ class item {
                 .'purchace_rate : '.$this->purchace_rate.' - '
                 .'item_code : '.$this->item_code.' - '
                 .'tax_category_id : '.$this->tax_category_id.' - '
+                .'discount_percent : '.$this->discount_percent. ' - '
                 .'mrp : '.$this->mrp;
     }
     function addItem($item=null){

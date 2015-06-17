@@ -9,7 +9,7 @@
  * @author Sakkeer Hussain
  */
 class mail {
-    public $to = 'cgtsoft@gmail.com, sakkeerhussainp@gmail.com, piknikdates@gmail.com';
+    public $to = 'cgtsoft@gmail.com, sakkeerhussainp@gmail.com';
     public $subject = 'Error Reporting from Pik Nik IMS';
     public $header = 'From: webmaster@piknikindia.in';
     public $tag = "MAIL CONTROLLER";

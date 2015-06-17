@@ -65,6 +65,9 @@ function get_form_html($form_id, $id) {
                         <th style="">
                             TAX
                         </th>
+                        <th style="">
+                            DISCOUNT(%)
+                        </th>
                     </tr>
                 </thead>
                 <tbody style="padding-left: 3px; text-align: center; ">
@@ -90,6 +93,7 @@ function get_form_html($form_id, $id) {
                             $tax_category->getTaxCategory();
                             ?>
                             <td id="tax_category" tax_category_id="<?php echo $tax_category->id; ?>" ><?php echo $tax_category->tax_category_name; ?></td>
+                            <td id="discount_percent"><?php echo $item->discount_percent; ?></td>
                         </tr>
                         <?php
                     }
@@ -127,6 +131,7 @@ function get_form_html($form_id, $id) {
             var item_code = selected_row.find('td#item_code').html();
             var mrp = selected_row.find('td#mrp').html();
             var purchace_rate = selected_row.find('td#purchace_rate').html();
+            var discount_percent = selected_row.find('td#discount_percent').html();
             var tax_category_id = selected_row.find('td#tax_category').attr('tax_category_id');
             get_form(11,  ///item create form
                 function (html, tools){
@@ -139,6 +144,7 @@ function get_form_html($form_id, $id) {
                     form.find('input#item_code').val(item_code);
                     form.find('input#mrp').val(mrp);
                     form.find('input#purchace_rate').val(purchace_rate);
+                    form.find('input#discount_percent').val(discount_percent);
                     form.find('select#tax_category').find('option#'+tax_category_id).prop('selected', true);
                     form.find('input[type=submit]').val('UPDATE');
                     $('div#head_div').html('ID : ITEM-'+id);

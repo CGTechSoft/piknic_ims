@@ -169,6 +169,7 @@ function get_form_html($form_id, $id, $page, $limit, $adjacents) {
                                         </thead> 
                                         <tbody> 
                                             <?php
+                                            if(is_array($purchace->getPurchaceItems()) and count($purchace->getPurchaceItems())>0){
                                             foreach ($purchace->getPurchaceItems() as $p_item) {
                                                 ?>
                                                 <tr>
@@ -192,6 +193,11 @@ function get_form_html($form_id, $id, $page, $limit, $adjacents) {
                                                         <?php echo ($p_item->quantity * $p_item->rate); ?>
                                                     </td>
                                                 </tr>
+                                                <?php
+                                            }
+                                            }  else {
+                                                ?>
+                                                <tr><td colspan="6">No Items found !</td></tr>    
                                                 <?php
                                             }
                                             ?>

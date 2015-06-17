@@ -83,6 +83,16 @@ function get_form_html($form_id, $id) {
                         </div>
                     </td>
                 </tr>
+                <tr>
+                    <td class="field_name"> 
+                        <font>DISCOUNT PERCENT</font>
+                    </td>
+                    <td class="field"> 
+                        <div class="parent">
+                            <input type="number" id="discount_percent" min="0" max="100" required step="0.01"/>
+                        </div>
+                    </td>
+                </tr>
                 <tr></tr>
                 <tr>
                     <td></td>
@@ -116,6 +126,7 @@ function get_form_html($form_id, $id) {
                     item_code: $('form input#item_code').val(),
                     mrp: $('form input#mrp').val(),
                     purchace_rate: $('form input#purchace_rate').val(),
+                    discount_percent: $('form input#discount_percent').val(),
                     tax_category_id: $('form select#tax_category').find('option:selected').attr('id')
                 }
                 add_form_data(data, function(message) {
@@ -141,6 +152,7 @@ function get_form_html($form_id, $id) {
                     item_code: $('form input#item_code').val(),
                     mrp: $('form input#mrp').val(),
                     purchace_rate: $('form input#purchace_rate').val(),
+                    discount_percent: $('form input#discount_percent').val(),
                     tax_category_id: $('form select#tax_category').find('option:selected').attr('id')
                 }
                 update_form_data(data, function(message) {
