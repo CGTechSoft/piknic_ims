@@ -157,7 +157,7 @@ function load_login_page() {
         $('div#spinner-wraper').css({'display': 'none'});
         $('div#content').css({'display': 'none'});
         $('div#login-wraper').css({'display': 'block'});
-        $('body').css({'background-color': '#21ACD7'});
+        $('body').css({'background-color': '#FFD00F'});
         $('font#section_heading').html('');
         $('div#content-body-menu').empty();
         $('div#form-body').empty();
