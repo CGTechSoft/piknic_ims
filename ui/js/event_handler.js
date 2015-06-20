@@ -13,6 +13,7 @@ $(document).ready(function(e) {
             load_login_page();
         }, function(message) {
             alert(message);
+            load_login_page();
         });
     });
 

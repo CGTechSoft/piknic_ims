@@ -13,6 +13,12 @@
             console.log(html);
             var responce = $.parseJSON(html);
             console.dir(responce);
+            
+            if (responce.status === 'failed' 
+                    && responce.error == 'Session expired') {
+                load_login_page();
+            }
+            
             responceHandler(responce);
         },
         error: function(html) {
@@ -146,3 +152,13 @@ function disable_spinner() {
         console.log('disabling spinner');
     $('div#spinner-wraper').css({'display': 'none'});
 }
+function load_login_page() {
+        console.log('loading log in page');
+        $('div#spinner-wraper').css({'display': 'none'});
+        $('div#content').css({'display': 'none'});
+        $('div#login-wraper').css({'display': 'block'});
+        $('body').css({'background-color': '#21ACD7'});
+        $('font#section_heading').html('');
+        $('div#content-body-menu').empty();
+        $('div#form-body').empty();
+    }

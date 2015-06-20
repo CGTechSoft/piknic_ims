@@ -120,6 +120,9 @@ function get_form_html($form_id, $date) {
                                 TOTAL NET. AMOUNT
                             </td>
                             <td style="width: 15%;">
+                                TOTAL DISCOUNT
+                            </td>
+                            <td style="width: 15%;">
                                 TOTAL AMOUNT
                             </td>
                     </tr>
@@ -135,6 +138,7 @@ function get_form_html($form_id, $date) {
                             <td><?php echo $vals['count']; ?></td>
                             <td><?php echo number_format($vals['tax_amount'], 2, '.',''); ?></td>
                             <td><?php echo number_format($vals['net_amount'], 2, '.',''); ?></td>
+                            <td><?php echo number_format($vals['discount'], 2, '.',''); ?></td>
                             <td><?php echo number_format($vals['amount'], 2, '.',''); ?></td>
                     </tr>
                 </tbody>                               

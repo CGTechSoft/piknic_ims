@@ -177,23 +177,27 @@ function get_form_html($form_id, $id) {
                                             </td>
                                             <td id="rate" val="<?php echo $s_item->rate; ?>">
                                                 <?php echo number_format($s_item->rate, 2, '.',''); ?>
-                                            </td>                                            
-                                            <td>
-                                                <?php echo number_format((($s_item->quantity * $s_item->rate) - $s_item->tax), 2, '.',''); ?>
-                                            </td>    
+                                            </td>      
                                             <?php 
                                                 $tax_category = new tax_category();
                                                 $tax_category->id = $item->tax_category_id;
                                                 $tax_category->getTaxCategory();
-                                            ?>
-                                            <td id="discount" val="<?php echo $s_item->discount; ?>" discount_percent="<?php echo $item->discount_percent; ?>">
+                                                
+                                                $total = ($s_item->quantity * $s_item->rate);
+                                                $discount_percent = (($s_item->discount*100)/$total);
+                                                $total = $total - $s_item->discount;
+                                            ?>                                        
+                                            <td>
+                                                <?php echo number_format(($total - $s_item->tax), 2, '.',''); ?>
+                                            </td>  
+                                            <td id="discount" val="<?php echo $s_item->discount; ?>" discount_percent="<?php echo $discount_percent; ?>">
                                                 <?php echo number_format($s_item->discount, 2, '.',''); ?>
                                             </td>
                                             <td id="tax" val="<?php echo $s_item->tax; ?>" tax_rate="<?php echo $tax_category->tax_percentage; ?>">
                                                 <?php echo number_format($s_item->tax, 2, '.',''); ?>
                                             </td>
-                                            <td id="total" val="<?php echo ($s_item->quantity * $s_item->rate); ?>">
-                                                <?php echo number_format(($s_item->quantity * $s_item->rate), 2, '.',''); ?>
+                                            <td id="total" val="<?php echo $total; ?>">
+                                                <?php echo number_format($total, 2, '.',''); ?>
                                             </td>
                                         </tr>
                                         <?php
@@ -282,7 +286,7 @@ function get_form_html($form_id, $id) {
                         row.find('input#quantity').attr('max', item.quantity);
                         row.find('input#rate').val(item.rate);
                         row.find('input#rate').attr('tax', item.tax_rate);
-                        row.find('input#rate').attr('discount_percent', item.discount_percent);
+                        row.find('input#discount_percent').val(item.discount_percent);
                         row.find('input#total').val(item.total);
                         row.find('input#total').attr('tax', item.tax);
                         row.find('input#total').attr('discount', item.discount);
@@ -405,7 +409,9 @@ function get_form_html($form_id, $id) {
                 html = html + "</table></div>";
                 html = html + "<div style=\"border-top:1px dashed #000; padding:10px 0;\"><table style=\"margin-left: auto;font-size: 12px;\">";
                 html = html + "<tr><td>Net. Amount</td><td style=\"margin:0 15;\">:</td><td style=\"text-align:right;\">" + data.net_amount + "</td></tr>";
-                html = html + "<tr><td>Discount</td><td style=\"margin:0 15;\">:</td><td style=\"text-align:right;\">" + data.discount + "</td></tr>";
+                if(parseFloat(data.discount) > 0 ){
+                    html = html + "<tr><td>Discount</td><td style=\"margin:0 15;\">:</td><td style=\"text-align:right;\">" + data.discount + "</td></tr>";
+                }
                 html = html + "<tr><td>Tax</td><td style=\"margin:0 15;\">:</td><td style=\"text-align:right;\">" + data.tax_amount + "</td></tr>";
                 html = html + "<tr style=\"font-size:18px;\"><td><b>Total</b></td><td style=\"margin:0 15;\">:</td><td style=\"text-align:right;\"><b>" + data.total + "</b></td></tr>";
                 html = html + "</table></div>";

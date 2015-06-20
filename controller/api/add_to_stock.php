@@ -56,6 +56,6 @@ if (isset($_SESSION['user_id']) and !empty($_SESSION['user_id'])) {
         }
     }
 } else {
-    $responce = array('status' => 'failed', 'error' => 'No session found', 'data' => array());
+    $responce = array('status' => 'failed', 'error' => 'Session expired', 'data' => array());
 }
 echo json_encode($responce);

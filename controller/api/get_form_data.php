@@ -42,7 +42,11 @@ if (isset($_SESSION['user_id']) and !empty($_SESSION['user_id'])) {
                                 $tax_category->id = $item->tax_category_id;
                                 $tax_category->getTaxCategory();
                                 
-                                $s_item_array=array("item_id"=>$item->id ,"item_name"=>$item->item_name.' - '.$item->item_code , "quantity"=>  number_format($s_item->quantity, 3, '.',''), "rate"=>  number_format($s_item->rate, 2, '.',''), "tax"=>$s_item->tax, "tax_rate"=>$tax_category->tax_percentage, "discount"=>$s_item->discount, "discount_percent"=>$item->discount_percent, "total"=>  number_format(($s_item->rate*$s_item->quantity)), 2, '.','');
+                                $total = ($s_item->quantity * $s_item->rate);
+                                $discount_percent = (($s_item->discount*100)/$total);
+                                $total = $total - $s_item->discount;                                
+                                
+                                $s_item_array=array("item_id"=>$item->id ,"item_name"=>$item->item_name.' - '.$item->item_code , "quantity"=>  number_format($s_item->quantity, 3, '.',''), "rate"=>  number_format($s_item->rate, 2, '.',''), "tax"=>$s_item->tax, "tax_rate"=>$tax_category->tax_percentage, "discount"=>$s_item->discount, "discount_percent"=>$discount_percent, "total"=>  number_format($total, 2, '.',''));
                                 array_push($items, $s_item_array);
                             }
                         }
@@ -106,6 +110,6 @@ if (isset($_SESSION['user_id']) and !empty($_SESSION['user_id'])) {
         $responce = array('status' => 'failed', 'error' => 'Data missing', 'data' => array());
     }
 } else {
-    $responce = array('status' => 'failed', 'error' => 'No session found', 'data' => array());
+    $responce = array('status' => 'failed', 'error' => 'Session expired', 'data' => array());
 }
 echo json_encode($responce);

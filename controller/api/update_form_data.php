@@ -44,6 +44,53 @@ if (isset($_SESSION['user_id']) and !empty($_SESSION['user_id'])) {
                         array_push($sales_items_new, $sales_item);
                     }
                 }
+                
+                
+                $sale->setSalesItems($sales_items_new);
+                $sale->updateSale();
+                
+                if(isset($sale->customer_id) and !empty($sale->customer_id)){
+                    $customer = new customer();
+                    $customer->id = $sale->customer_id;
+                    $customer->getCustomer();
+                    $customer->total_purchace_amount = $customer->total_purchace_amount + $balance;
+                    $customer->updateCustomer();
+                }
+                
+                
+                ///updating stock
+                
+                //fixing multiple occurences of same item in new array
+                for ($i=0; $i<sizeof($sales_items_new); $i++){
+                    $item_id = $sales_items_new[$i]->item_id;                    
+                    for ($j=$i+1; $j<sizeof($sales_items_new); $j++){
+                        if($item_id == $sales_items_new[$j]->item_id){
+                            $sales_items_new[$i]->quantity = 
+                                    $sales_items_new[$i]->quantity + $sales_items_new[$j]->quantity;
+                            unset($sales_items_new[$j]);
+                            $j--;
+                            $sales_items_new = array_values($sales_items_new);
+                        }
+                    }
+                }
+
+                //fixing multiple occurences of same item in prev array
+                for ($i=0; $i<sizeof($sales_items_prev); $i++){
+                    $item_id = $sales_items_prev[$i]->item_id;                    
+                    for ($j=$i+1; $j<sizeof($sales_items_prev); $j++){
+                        if($item_id == $sales_items_prev[$j]->item_id){
+                            $sales_items_prev[$i]->quantity = 
+                                    $sales_items_prev[$i]->quantity + $sales_items_prev[$j]->quantity;
+                            unset($sales_items_prev[$j]);
+                            $j--;
+                            $sales_items_prev = array_values($sales_items_prev);
+                        }
+                    }
+                }
+                
+                
+                
+                ///statrted updating
                 foreach ($sales_items_new as $sale_item_new) {
                     $item_id = $sale_item_new->item_id;
                     $new_item = true;
@@ -101,13 +148,6 @@ if (isset($_SESSION['user_id']) and !empty($_SESSION['user_id'])) {
                     }
                 }
                 
-                $sale->setSalesItems($sales_items_new);
-                $sale->updateSale();
-                $customer = new customer();
-                $customer->id = $sale->customer_id;
-                $customer->getCustomer();
-                $customer->total_purchace_amount = $customer->total_purchace_amount + $balance;
-                $customer->updateCustomer();
                 $message = "Sale Updated Successfuly";
                 $responce = array('status' => 'success', 'error' => '', 'data' => array("message" => $message, "id"=>$sale->id));
             } else {
@@ -464,6 +504,6 @@ if (isset($_SESSION['user_id']) and !empty($_SESSION['user_id'])) {
         $responce = array('status' => 'failed', 'error' => 'Data missing', 'data' => array());
     }
 } else {
-    $responce = array('status' => 'failed', 'error' => 'No session found', 'data' => array());
+    $responce = array('status' => 'failed', 'error' => 'Session expired', 'data' => array());
 }
 echo json_encode($responce);

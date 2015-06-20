@@ -181,7 +181,8 @@ class sales {
     }
 
     function getOneDaysSaleStatistics($company_id, $date) {
-        $query = "SELECT count(*) as `count`, SUM(`amount`) as `amount` , SUM(`net_amount`) as `net_amount` , SUM(`tax_amount`) as `tax_amount` FROM `sales` WHERE DATE(`sale_at`) = '" . $date . "' and `company_id` = $company_id ";
+        $query = "SELECT count(*) as `count`, SUM(`amount`) as `amount` , SUM(`net_amount`) as `net_amount` , SUM(`tax_amount`) as `tax_amount`, SUM(`discount`) as `discount` "
+                    ."FROM `sales` WHERE DATE(`sale_at`) = '" . $date . "' and `company_id` = $company_id ";
         $result = $this->db_handler->executeQuery($query);
         $vals = array();
         if ($row = mysql_fetch_assoc($result)) {

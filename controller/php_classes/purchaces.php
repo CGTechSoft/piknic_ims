@@ -122,27 +122,33 @@ class purchaces {
 
     function getPurchaces($company_id) {
         $purchaces = $this->db_handler->get_model_list($this, 'company_id = ' . $company_id);
-        foreach ($purchaces as $purchace) {
-            $purchace_item = new purchace_items();
-            $purchace->purchace_items = $purchace_item->getPurchace_items($purchace->id);
+        if($purchaces!=NULL && sizeof($purchaces)!=0){
+            foreach ($purchaces as $purchace) {
+            	$purchace_item = new purchace_items();
+            	$purchace->purchace_items = $purchace_item->getPurchace_items($purchace->id);
+            }
         }
         return $purchaces;
     }
 
     function getPurchacesDESC($company_id, $start, $limit) {
         $purchaces = $this->db_handler->get_model_list($this, 'company_id = ' . $company_id . " ORDER BY `id` DESC LIMIT  $start,$limit");
-        foreach ($purchaces as $purchace) {
-            $purchace_item = new purchace_items();
-            $purchace->purchace_items = $purchace_item->getPurchace_items($purchace->id);
+        if($purchaces!=NULL && sizeof($purchaces)!=0){
+            foreach ($purchaces as $purchace) {
+            	$purchace_item = new purchace_items();
+            	$purchace->purchace_items = $purchace_item->getPurchace_items($purchace->id);
+            }
         }
         return $purchaces;
     }
 
     function getNotStockedPurchaces($company_id) {
         $purchaces = $this->db_handler->get_model_list($this, 'company_id = ' . $company_id . " and stocked=0 ORDER BY `id` DESC");
-        foreach ($purchaces as $purchace) {
-            $purchace_item = new purchace_items();
-            $purchace->purchace_items = $purchace_item->getPurchace_items($purchace->id);
+        if($purchaces!=NULL && sizeof($purchaces)!=0){
+            foreach ($purchaces as $purchace) {
+                $purchace_item = new purchace_items();
+                $purchace->purchace_items = $purchace_item->getPurchace_items($purchace->id);
+            }
         }
         return $purchaces;
     }
