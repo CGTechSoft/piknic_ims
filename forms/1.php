@@ -391,6 +391,7 @@ function get_form_html($form_id, $id) {
                             var quantity = $(this).find('input#quantity').val();
                             quantity = parseFloat(quantity).toFixed(3);
                             var rate = $(this).find('input#rate').val();
+                            var tax_rate = $(this).find('input#rate').attr('tax');
                             rate = parseFloat(rate).toFixed(2);
                             var tax = $(this).find('input#total').attr('tax');
                             var discount = $(this).find('input#discount').val();
@@ -402,7 +403,8 @@ function get_form_html($form_id, $id) {
                                 item_name: item_name,
                                 total: total,
                                 tax: tax,
-                                discount: discount
+                                discount: discount,
+                                tax_rate:tax_rate
                             }
                             items[i++] = item;
                         }
@@ -489,12 +491,13 @@ function get_form_html($form_id, $id) {
                 
                 html = html + "<div style=\"border-top:1px dashed #000; margin:10px auto 0 auto;padding:0 0 10px 0;\">"
                         + "<table style=\"width:100%;font-size: 12px;\"><tr style=\"border-bottom: 1px solid #000; border-top: 1px solid #000;\">"
-                        + "<td style=\"width:45%; border-bottom:1px dashed #000; padding-bottom:5px; margin-bottom:5px;\">Description</td>"
-                        + "<td style=\"width:17%; border-bottom:1px dashed #000; padding-bottom:5px; margin-bottom:5px; text-align:right;\">Qty</td>"
-                        + "<td style=\"width:17%; border-bottom:1px dashed #000; padding-bottom:5px; margin-bottom:5px; text-align:right;\">Rate</td>"
+                        + "<td style=\"width:44%; border-bottom:1px dashed #000; padding-bottom:5px; margin-bottom:5px;\">Description</td>"
+                        + "<td style=\"width:14%; border-bottom:1px dashed #000; padding-bottom:5px; margin-bottom:5px; text-align:right;\">Qty</td>"
+                        + "<td style=\"width:14%; border-bottom:1px dashed #000; padding-bottom:5px; margin-bottom:5px; text-align:right;\">Rate</td>"
                         // + "<td style=\"width:15%; border-bottom:1px dashed #000; padding-bottom:5px; margin-bottom:5px; text-align:right;\">Amount</td>"
                         // + "<td style=\"width:10%; border-bottom:1px dashed #000; padding-bottom:5px; margin-bottom:5px; text-align:right;\">Tax</td>"
-                        + "<td style=\"width:21%; border-bottom:1px dashed #000; padding-bottom:5px; margin-bottom:5px; text-align:right;\">Total</td></tr>";
+                        + "<td style=\"width:14%; border-bottom:1px dashed #000; padding-bottom:5px; margin-bottom:5px; text-align:right;\">Tax(%)</td>"
+                        + "<td style=\"width:14%; border-bottom:1px dashed #000; padding-bottom:5px; margin-bottom:5px; text-align:right;\">Total</td></tr>";
                 var i = 0;
                 for (var key in data.items) {
                     var item = data.items[key];
@@ -503,6 +506,7 @@ function get_form_html($form_id, $id) {
                             +"<td style=\"text-align:right;\">" + parseFloat(item.rate).toFixed(2) + "</td>"
                             //+"<td style=\"text-align:right;\">" + (parseFloat(item.total) - parseFloat(item.tax)) + "</td>"
 //                            +"<td style=\"text-align:right;\">" + item.tax + "</td>"
+                            +"<td style=\"text-align:right;\">" + item.tax_rate + "</td>"
                             +"<td style=\"text-align:right;\">" + parseFloat(item.total).toFixed(2) + "</td>"
                             +"</tr>";
                 }

@@ -182,6 +182,22 @@ function get_form_html($form_id, $id) {
                 });
             }
         }
+        
+        function on_print_clicked() {
+            //var date = $('input#date_field').val();
+            var d = new Date();
+            var date = d.getDate()+"/"+(parseInt(d.getMonth())+parseInt(1))+"/"+d.getFullYear();
+            
+            $('div#print_container_header')
+                    .html('<font style="color:#21ACD7; font-size:20px; ">STOCK REPORT OF '+date+'</font>');
+            var html = $('div#purchace_items').html();
+            $('div#print_container_body').html(html);  
+            print();
+            $('div#print_container_header').empty();
+            $('div#print_container_body').empty();
+            $('div#print_container_footer').empty();
+        }
+        
         function search(){
             var search_key = $('input#search').val();
             if(search_key !== ''){                
@@ -227,6 +243,8 @@ function get_form_tools_html($id){
     <img onclick="on_edit_clicked()" id="edit" onclick="" src="../ui/images/edit.png" height="40" width="40" style="margin: 15px auto 0px 12px; cursor: pointer; display: none;">
     <img id="delete_fade" src="../ui/images/delete_fade.png" height="40" width="40" style="margin: 15px auto 0px 12px;">
     <img onclick="on_delete_clicked()" id="delete" onclick="" src="../ui/images/delete.png" height="40" width="40" style="margin: 15px auto 0px 12px; cursor: pointer; display: none;">
+    <img id="print_fade" src="../ui/images/printer_fade.png" height="40" width="40" style="margin: 15px auto 0px 12px; display: none;">
+    <img id="print" onclick="on_print_clicked()" src="../ui/images/printer.png" height="40" width="40" style="margin: 15px auto 0px 12px; cursor: pointer;">
     <script>
         
     </script>

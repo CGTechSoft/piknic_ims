@@ -27,7 +27,8 @@ if(isset($_SESSION['user_id']) and !empty($_SESSION['user_id'])){
             array('menu_item_name'=>'Expence','menu_item_id'=>'5'),
             array('menu_item_name'=>'Customer','menu_item_id'=>'6'),
             array('menu_item_name'=>'Add to stock','menu_item_id'=>'16'),
-            array('menu_item_name'=>'Stock Report','menu_item_id'=>'9'));
+            array('menu_item_name'=>'Stock Report','menu_item_id'=>'9'),
+            array('menu_item_name'=>'Help','menu_item_id'=>'35'));
         
         $responce = array('status'=>'success','error'=>'','data'=> array('menu_list'=>$menu_list));
     }else if($user->user_type_id==2){  
@@ -36,7 +37,8 @@ if(isset($_SESSION['user_id']) and !empty($_SESSION['user_id'])){
             array('menu_item_name'=>'Edit Purchace','menu_item_id'=>'8'),
             array('menu_item_name'=>'Purchace Return','menu_item_id'=>'30'),
             array('menu_item_name'=>'Purchace Report','menu_item_id'=>'19'),
-            array('menu_item_name'=>'Stock Report','menu_item_id'=>'9'));
+            array('menu_item_name'=>'Stock Report','menu_item_id'=>'9'),
+            array('menu_item_name'=>'Help','menu_item_id'=>'36'));
         
         $responce = array('status'=>'success','error'=>'','data'=> array('menu_list'=>$menu_list));
     }else if($user->user_type_id==3){
@@ -47,7 +49,8 @@ if(isset($_SESSION['user_id']) and !empty($_SESSION['user_id'])){
             array('menu_item_name'=>'Day End Report','menu_item_id'=>'24'),
             array('menu_item_name'=>'Sales Report','menu_item_id'=>'15'),
             array('menu_item_name'=>'Bank Deposit','menu_item_id'=>'4'),
-            array('menu_item_name'=>'Stock Report','menu_item_id'=>'20'));
+            array('menu_item_name'=>'Stock Report','menu_item_id'=>'20'),
+            array('menu_item_name'=>'Help','menu_item_id'=>'37'));
         
         $responce = array('status'=>'success','error'=>'','data'=> array('menu_list'=>$menu_list));
     }else if($user->user_type_id==4){   
@@ -57,7 +60,8 @@ if(isset($_SESSION['user_id']) and !empty($_SESSION['user_id'])){
             array('menu_item_name'=>'Vendors','menu_item_id'=>'18'),
             array('menu_item_name'=>'Banks','menu_item_id'=>'23'),
             array('menu_item_name'=>'Shops','menu_item_id'=>'26'),
-            array('menu_item_name'=>'Users','menu_item_id'=>'28'));
+            array('menu_item_name'=>'Users','menu_item_id'=>'28'),
+            array('menu_item_name'=>'Help','menu_item_id'=>'34'));
          
         $responce = array('status'=>'success','error'=>'','data'=> array('menu_list'=>$menu_list));
     }else {  

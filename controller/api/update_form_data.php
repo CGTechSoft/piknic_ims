@@ -356,8 +356,8 @@ if (isset($_SESSION['user_id']) and !empty($_SESSION['user_id'])) {
             }            
         } else if ($form_id == 25) {   ///edit inventry
             if (isset($_POST['inventry_id']) and !empty($_POST['inventry_id']) 
-                    and isset($_POST['in_stock_count']) and !empty($_POST['in_stock_count']) 
-                    and isset($_POST['mrp']) and !empty($_POST['mrp']) 
+                    and isset($_POST['in_stock_count']) // and !empty($_POST['in_stock_count']) 
+                    and isset($_POST['mrp']) // and !empty($_POST['mrp']) 
                     and isset($_POST['tax_category_id']) and !empty($_POST['tax_category_id'])) {
                 
                 $inv = new inventry();

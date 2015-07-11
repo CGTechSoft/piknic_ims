@@ -38,9 +38,12 @@ class customer {
         if ($customer == null){
             $customer = $this;
         }
-        $this->db_handler->add_model($customer);
-        $description = "Added new Customer (" . $customer->to_string() . ")";
-        Log::i($this->tag, $description);
+        $result = $this->db_handler->add_model($customer);        
+        if($result){
+            $description = "Added new Customer (" . $customer->to_string() . ")";
+            Log::i($this->tag, $description);
+        }
+        return $result;
     }
     function getCustomer(){
         return $this->db_handler->get_model($this,  $this->id);
