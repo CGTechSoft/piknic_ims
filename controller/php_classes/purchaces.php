@@ -190,29 +190,3 @@ class purchaces {
     }
 
 }
-
-//registering for class auto loading
-//spl_autoload_register(function($class_name) {
-//    $controller_root = $_SERVER['DOCUMENT_ROOT'] . '/piknik_ims/controller';
-//    if (file_exists($controller_root . '/php_classes/' . $class_name . '.php')) {
-//        $file_name = $controller_root . '/php_classes/' . $class_name . '.php';
-//        require_once $file_name;
-//    } else {
-//        throw new Exception("Class " . $class_name . " Not found");
-//    }
-//});
-//$p = new Purchaces();
-//$p->id = 4;
-////$p->amount = 300;
-////$p->wendor_id = 1;
-////$p->purchace_manager_id = 1;
-////$pi = new Purchace_items();
-////$pi->item_id=1;
-////$pi->quantity=10;
-////$pi->rate=10;
-////$pia = array($pi,$pi,$pi);
-////$p->setPurchaceItems($pia);
-////$p->addPurchace();
-//$p->getPurchace();
-//print_r($p);
-//echo $p->getPurchacesCount(1);
