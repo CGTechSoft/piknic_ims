@@ -5,7 +5,7 @@ function get_form_html($form_id, $date) {
     ?>
     <div id="head_div" style="padding: 5px 0; background-color: #ECECEC;  color: #21ACD7;
          border-radius: 5px;margin-left: auto; text-align: center; ">
-        DAY END REPORT OF 
+        BALANCE SHEET OF
         <input id="date_field" value="<?php
         if ($date == 0) {
             $date = date('d/m/Y', time());
@@ -41,11 +41,14 @@ function get_form_html($form_id, $date) {
                         <td>
                             SHOP
                         </td>
-                        <td style="width: 25%;">
+                        <td style="width: 18%;">
                             INCOME (SALES)
                         </td>
-                        <td style="width: 25%;">
+                        <td style="width: 18%;">
                             EXPENSE (PURCHASE) 
+                        </td>
+                        <td style="width: 15%;">
+                            PROFIT 
                         </td>
                     </tr>
                 </thead>
@@ -68,9 +71,8 @@ function get_form_html($form_id, $date) {
                             $sale_income_for_this_shop = $sale->getOneDaySaleIncome($shop->id, $date);
                             $total_income += $sale_income_for_this_shop['amount'];                            
                             
-                            $purchace = new purchaces();
-                            $purchace_expence_for_this_shop = $purchace->getOneDayPurchaseExpence($shop->id, $date);
-                            $total_expense += $purchace_expence_for_this_shop['amount'];
+                            $purchace_expence_for_this_shop = $sale->getOneDaysSaleExpence($shop->id, $date);
+                            $total_expense += $purchace_expence_for_this_shop;
                             ?>
                             <tr>
                                 <td style="text-align: center;">
@@ -84,7 +86,11 @@ function get_form_html($form_id, $date) {
                                 </td>
 
                                 <td id="tax">
-                                    <?php echo number_format($purchace_expence_for_this_shop['amount'], 2, '.', ''); ?>
+                                    <?php echo number_format($purchace_expence_for_this_shop, 2, '.', ''); ?>
+                                </td>
+
+                                <td id="tax">
+                                    <?php echo number_format(($sale_income_for_this_shop['amount'] - $purchace_expence_for_this_shop), 2, '.', ''); ?>
                                 </td>
                             </tr>
                             <?php
@@ -98,6 +104,7 @@ function get_form_html($form_id, $date) {
                         <td style="text-align: right;"> TOTAL </td>
                         <td><?php echo number_format($total_income, 2, '.', ''); ?></td>
                         <td><?php echo number_format($total_expense, 2, '.', ''); ?></td>
+                        <td><?php echo number_format(($total_income - $total_expense), 2, '.', ''); ?></td>
                     </tr>
                 </tbody>                               
             </table>

@@ -232,6 +232,22 @@ class sales {
             return FALSE;
         }
     }
+    function getOneDaysSaleExpence($company_id,$date){
+        $sale_item = new sales_items();
+        $sales_items = $sale_item->getOneDaysSaleItems($company_id, $date);
+        $total_purchase_cost = 0;
+        $purchase_item = new purchace_items();
+        if(is_array($sales_items) and count($sales_items)){
+            foreach ($sales_items as $sale_item_array) {
+                $item_id = $sale_item_array->item_id;
+                $quantity = $sale_item_array->quantity;
+                $purchace_rate = $purchase_item->getPurchaseRate($company_id, $date, $item_id);
+                /* @var $purchace_rate : float */
+                $total_purchase_cost += $purchace_rate * $quantity;
+            }
+        }
+        return $total_purchase_cost;
+    }
 
 }
 
