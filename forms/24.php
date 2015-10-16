@@ -140,7 +140,7 @@ function get_form_html($form_id, $date) {
                         ?>
                             <td>1</td>
                             <td style="text-align: left;">SALES</td>
-                            <td><?php echo $vals['count']; ?></td>
+                            <td><?php echo $vals['count'].' ('.$vals['min_bill_number'].' - '.$vals['max_bill_number'].')'; ?></td>
                             <td><?php echo number_format($vals['tax_amount'], 2, '.',''); ?></td>
                             <td><?php echo number_format($vals['net_amount'], 2, '.',''); ?></td>
                             <td><?php echo number_format($vals['discount'], 2, '.',''); ?></td>
