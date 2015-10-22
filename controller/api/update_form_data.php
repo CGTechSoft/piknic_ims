@@ -557,7 +557,7 @@ if (isset($_SESSION['user_id']) and !empty($_SESSION['user_id'])
         } else if ($form_id == 42) {   ///tax category change  form
             if (isset($_POST['tax_category_id']) and !empty($_POST['tax_category_id']) 
                     and isset($_POST['tax_category_name']) and !empty($_POST['tax_category_name']) 
-                    and isset($_POST['tax_percent']) and !empty($_POST['tax_percent'])) {
+                    and isset($_POST['tax_percent'])){ // and !empty($_POST['tax_percent'])) {
                 
                 $tax_category = new tax_category();
                 $tax_category->id = $_POST['tax_category_id'];
